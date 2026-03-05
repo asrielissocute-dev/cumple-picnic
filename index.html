@@ -24,6 +24,30 @@ body {
     100% { background-position: right; }
 }
 
+/* INTRO SCREEN */
+#intro {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #1a0026, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20000;
+    text-align: center;
+    cursor: pointer;
+}
+
+#intro h2 {
+    font-size: clamp(1.5em,5vw,2.5em);
+    letter-spacing: 3px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
 .cursor {
     position: fixed;
     width: 48px;
@@ -98,14 +122,9 @@ h1 {
     cursor: pointer;
 }
 
-.window img {
-    width: 100%;
-    display: block;
-}
+.window img { width:100%; display:block; }
 
-@media (max-width: 768px) {
-    .window { width: 160px; }
-}
+@media (max-width:768px){ .window{ width:160px;} }
 
 .sparkle {
     position: fixed;
@@ -124,6 +143,10 @@ h1 {
 </head>
 <body>
 
+<div id="intro">
+    <h2>✧ TAP TO ENTER THE CRIME SCENE ✧</h2>
+</div>
+
 <audio id="music" src="21594617-fallen-down-reprise-cover-dreamjer-118787.mp3" loop playsinline></audio>
 <audio id="confettiSound" src="https://assets.mixkit.co/sfx/preview/mixkit-party-confetti-1253.mp3"></audio>
 <audio id="meowSound" src="https://assets.mixkit.co/sfx/preview/mixkit-kitty-meow-93.mp3"></audio>
@@ -135,11 +158,10 @@ h1 {
 <!-- VERDE -->
 <div class="window" style="top:5%;left:3%;z-index:1;"><div class="window-header"><div class="window-buttons"><span>_</span><span>□</span><span class="close">X</span></div></div><img src="https://wallpapers.com/images/hd/paisajeestetico-cottagecore-eok4e8l9iminy1oh.jpg"></div>
 <div class="window" style="top:20%;right:5%;z-index:1;"><div class="window-header"><div class="window-buttons"><span>_</span><span>□</span><span class="close">X</span></div></div><img src="https://cdn.pixabay.com/photo/2019/07/21/16/25/forest-4353073_1280.jpg"></div>
-<div class="window" style="bottom:5%;left:10%;z-index:1;"><div class="window-header"><div class="window-buttons"><span>_</span><span>□</span><span class="close">X</span></div></div><img src="https://thumbs.dreamstime.com/b/bosque-en-la-colina-23511944.jpg"></div>
 
-<!-- PICNIC superpuestas -->
-<div class="window" style="top:12%;left:18%;z-index:2;"><div class="window-header"><div class="window-buttons"><span>_</span><span>□</span><span class="close">X</span></div></div><img src="https://i.pinimg.com/736x/d7/07/86/d707860f4aab19a0aa1010268e3ea241.jpg"></div>
-<div class="window" style="top:40%;right:15%;z-index:2;"><div class="window-header"><div class="window-buttons"><span>_</span><span>□</span><span class="close">X</span></div></div><img src="https://preview.redd.it/mothers-day-picnic-v0-b655asl7hcx81.jpg?width=640&crop=smart&auto=webp&s=1dd9fb5019f9601bcbfbb44130d380509d566853"></div>
+<!-- PICNIC -->
+<div class="window" style="top:15%;left:20%;z-index:2;"><div class="window-header"><div class="window-buttons"><span>_</span><span>□</span><span class="close">X</span></div></div><img src="https://i.pinimg.com/736x/d7/07/86/d707860f4aab19a0aa1010268e3ea241.jpg"></div>
+<div class="window" style="top:45%;right:15%;z-index:2;"><div class="window-header"><div class="window-buttons"><span>_</span><span>□</span><span class="close">X</span></div></div><img src="https://preview.redd.it/mothers-day-picnic-v0-b655asl7hcx81.jpg?width=640&crop=smart&auto=webp&s=1dd9fb5019f9601bcbfbb44130d380509d566853"></div>
 
 <div class="container">
 <h1>✧･ﾟ: *✧･ﾟ:* Asesinato en el Picnic *:･ﾟ✧*:･ﾟ✧</h1>
@@ -152,42 +174,24 @@ h1 {
 </div>
 
 <script>
+const intro = document.getElementById("intro");
 const music = document.getElementById("music");
 const confettiSound = document.getElementById("confettiSound");
 const meowSound = document.getElementById("meowSound");
 const dragSound = document.getElementById("dragSound");
 const closeSound = document.getElementById("closeSound");
 
-// --- ACTIVAR AUDIO EN PRIMERA INTERACCIÓN (los navegadores bloquean autoplay) ---
-function iniciarAudio() {
+intro.addEventListener("click", ()=>{
     music.volume = 0.6;
-    const playPromise = music.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(()=>{});
-    }
-
-    confettiSound.volume = 0.8;
+    music.play().catch(()=>{});
     confettiSound.play().catch(()=>{});
-
-    document.removeEventListener("click", iniciarAudio);
-    document.removeEventListener("touchstart", iniciarAudio);
-}
-
-// En móvil iOS el audio SOLO puede activarse dentro de un gesto directo
-function activarEnMovil(e){
-    iniciarAudio();
-}
-
-// usamos passive:false para asegurar compatibilidad iOS
- document.addEventListener("touchstart", activarEnMovil, {passive:false});
-
-document.addEventListener("click", iniciarAudio);
-document.addEventListener("touchstart", iniciarAudio);
+    intro.style.display = "none";
+});
 
 // Cursor gato
 const cursor = document.getElementById("cursor");
-cursor.style.left = "50vw";
-cursor.style.top = "50vh";
+cursor.style.left="50vw";
+cursor.style.top="50vh";
 let lastX=0,lastY=0;
 document.addEventListener("mousemove", e=>{
     cursor.style.left=(e.clientX-10)+"px";
@@ -195,7 +199,7 @@ document.addEventListener("mousemove", e=>{
     if(Math.abs(e.clientX-lastX)>5||Math.abs(e.clientY-lastY)>5){
         cursor.classList.add("moving");
         meowSound.currentTime=0;
-        meowSound.play();
+        meowSound.play().catch(()=>{});
     } else cursor.classList.remove("moving");
     lastX=e.clientX;lastY=e.clientY;
 });
@@ -209,7 +213,7 @@ document.querySelectorAll(".window").forEach(win=>{
         offsetX=e.offsetX;
         offsetY=e.offsetY;
         dragSound.volume=0.1;
-        dragSound.play();
+        dragSound.play().catch(()=>{});
     });
 });
 document.addEventListener("mousemove",e=>{
@@ -224,7 +228,7 @@ document.addEventListener("mouseup",()=>active=null);
  document.querySelectorAll(".close").forEach(btn=>{
     btn.addEventListener("click",e=>{
         e.target.closest(".window").remove();
-        closeSound.play();
+        closeSound.play().catch(()=>{});
     });
 });
 
