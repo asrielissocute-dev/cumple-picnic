@@ -124,7 +124,15 @@ h1 {
 
 .window img { width:100%; display:block; }
 
-@media (max-width:768px){ .window{ width:160px;} }
+@media (max-width:768px){ 
+    .window{ width:160px; }
+
+    /* Reorganización SOLO móvil */
+    .window:nth-of-type(4){
+        top:65% !important;
+        right:10% !important;
+    }
+}
 
 .sparkle {
     position: fixed;
@@ -166,10 +174,10 @@ h1 {
 <div class="container">
 <h1>✧･ﾟ: *✧･ﾟ:* Asesinato en el Picnic *:･ﾟ✧*:･ﾟ✧</h1>
 <div class="info-text">
-<span>· Has sido invitado a un picnic en LUGARX para jugar una partida de cluedo en vivo por mi cumpleaños.</span>
-<span>· Vístete con tus mejores galas para interpretar a tu personaje asignado.</span>
-<span>· Rebautizado con nuevo nombre y personalidad, enhorabuena, espía.</span>
-<span>· Sábado 21, espero verte a las 12:00.</span>
+<span>✧ Has sido invitado a un picnic en el parque El Soto, Móstoles, para jugar una partida de cluedo en vivo por mi cumpleaños. ✧</span>
+<span>✧ Vístete con tus mejores galas para interpretar a tu personaje asignado. ✧</span>
+<span>✧ Rebautizado con nuevo nombre y personalidad, enhorabuena, espía. ✧</span>
+<span>✧ Sábado 21, espero verte a las 12:00. ✧</span>
 </div>
 </div>
 
