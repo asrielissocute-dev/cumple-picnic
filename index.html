@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asesinato en el Picnic</title>
+
+<style>
+
+/* ---------------- FONDO GENERAL ---------------- */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #3b0a57, #6a00f4, #ff00aa);
+    background-size: 400% 400%;
+    animation: fondo 15s ease infinite alternate;
+    color: white;
+    min-height: 100vh;
+    cursor: none;
+}
+
+@keyframes fondo {
+    0% { background-position: left; }
+    100% { background-position: right; }
+}
+
+/* ---------------- CURSOR GATO ---------------- */
+.cursor {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("cute-pop-cat-pack.png");
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+    background-position: left center;
+    image-rendering: pixelated;
+    filter:
+        drop-shadow(2px 0 0 #a020f0)
+        drop-shadow(-2px 0 0 #ffd60a);
+}
+
+.cursor.moving {
+    background-position: right center;
+}
+
+/* ---------------- CONTENEDOR PRINCIPAL ---------------- */
+.container {
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+h1 {
+    font-size: clamp(2em, 6vw, 3em);
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #a020f0;
+}
+
+.info-text {
+    font-size: clamp(1em, 4vw, 1.3em);
+    line-height: 1.9;
+    margin-top: 30px;
+    text-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+.info-text span {
+    display: block;
+    margin: 10px 0;
+}
+
+/* ---------------- VENTANAS WINDOWS ---------------- */
+.window {
+    position: absolute;
+    width: 220px;
+    border: 3px solid #c77dff;
+    background: #e0c3fc;
+    box-shadow: 5px 5px 0px #5a189a;
+}
+
+.window-header {
+    background: #c77dff;
+    display: flex;
+    justify-content: flex-end;
+    padding: 2px;
+}
+
+.window-buttons span {
+    width: 16px;
+    height: 16px;
+    background: #2196f3;
+    color: white;
+    font-size: 12px;
+    margin-left: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.window img {
+    width: 100%;
+    display: block;
+}
+
+.window1 { top: 10%; left: 5%; }
+.window2 { top: 30%; right: 5%; }
+.window3 { top: 55%; left: 10%; }
+.window4 { top: 65%; right: 8%; }
+
+@media (max-width: 768px) {
+    .window {
+        width: 140px;
+        opacity: 0.85;
+    }
+}
+
+/* ---------------- REGALO ---------------- */
+.gift {
+    margin-top: 40px;
+    cursor: pointer;
+    font-size: 50px;
+    transition: transform 0.3s;
+}
+
+.gift:hover {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+.hidden {
+    display: none;
+    margin-top: 20px;
+}
+
+/* ---------------- SPARKLES ---------------- */
+.sparkle {
+    position: fixed;
+    font-size: 18px;
+    animation: float 5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- Ventanas colinas -->
+<div class="window window1">
+    <div class="window-header">
+        <div class="window-buttons">
+            <span>_</span><span>□</span><span>X</span>
+        </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+</div>
+
+<div class="window window2">
+    <div class="window-header">
+        <div class="window-buttons">
+            <span>_</span><span>□</span><span>X</span>
+        </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0723c8a">
+</div>
+
+<!-- Ventanas picnic -->
+<div class="window window3">
+    <div class="window-header">
+        <div class="window-buttons">
+            <span>_</span><span>□</span><span>X</span>
+        </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea">
+</div>
+
+<div class="window window4">
+    <div class="window-header">
+        <div class="window-buttons">
+            <span>_</span><span>□</span><span>X</span>
+        </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1478144592103-25e218a04891">
+</div>
+
+<div class="container">
+
+<h1>✧･ﾟ: *✧･ﾟ:* Asesinato en el Picnic *:･ﾟ✧*:･ﾟ✧</h1>
+
+<div class="info-text">
+<span>· Has sido invitado a un picnic en LUGARX para jugar una partida de cluedo en vivo por mi cumpleaños.</span>
+<span>· Vístete con tus mejores galas para interpretar a tu personaje asignado.</span>
+<span>· Rebautizado con nuevo nombre y personalidad, enhorabuena, espía.</span>
+<span>· Sábado 21, espero verte a las 12:00.</span>
+</div>
+
+<div class="gift" onclick="mostrarDisfraz()">✦</div>
+<p>Haz click</p>
+
+<div id="disfraz" class="hidden">
+<h2>✧ Revelación ✧</h2>
+<img src="https://i.imgur.com/4AiXzf8.jpeg" width="250">
+</div>
+
+</div>
+
+<script>
+
+function mostrarDisfraz() {
+    document.getElementById("disfraz").classList.toggle("hidden");
+}
+
+const cursor = document.getElementById("cursor");
+
+// Posición inicial para que no aparezca en (0,0)
+cursor.style.left = "50vw";
+cursor.style.top = "50vh";
+let lastX = 0;
+let lastY = 0;
+
+
+document.addEventListener("mousemove", e => {
+    cursor.style.left = (e.clientX - 10) + "px";
+    cursor.style.top = (e.clientY - 5) + "px";
+
+    const dx = Math.abs(e.clientX - lastX);
+    const dy = Math.abs(e.clientY - lastY);
+
+    if (dx > 5 || dy > 5) {
+        cursor.classList.add("moving");
+    } else {
+        cursor.classList.remove("moving");
+    }
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+});
+
+function crearBrillos() {
+    for (let i = 0; i < 6; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerHTML = "✧";
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.fontSize = (Math.random() * 10 + 10) + "px";
+        sparkle.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.remove();
+        }, 6000);
+    }
+}
+
+setInterval(crearBrillos, 150);
+
+</script>
+
+</body>
+</html>
