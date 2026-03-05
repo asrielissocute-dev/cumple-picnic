@@ -124,7 +124,7 @@ h1 {
 </head>
 <body>
 
-<audio id="music" src="21594617-fallen-down-reprise-cover-dreamjer-118787.mp3" autoplay loop></audio>
+<audio id="music" src="21594617-fallen-down-reprise-cover-dreamjer-118787.mp3" loop></audio>
 <audio id="confettiSound" src="https://assets.mixkit.co/sfx/preview/mixkit-party-confetti-1253.mp3"></audio>
 <audio id="meowSound" src="https://assets.mixkit.co/sfx/preview/mixkit-kitty-meow-93.mp3"></audio>
 <audio id="dragSound" src="https://assets.mixkit.co/sfx/preview/mixkit-page-slide-1116.mp3"></audio>
@@ -158,9 +158,18 @@ const meowSound = document.getElementById("meowSound");
 const dragSound = document.getElementById("dragSound");
 const closeSound = document.getElementById("closeSound");
 
-window.addEventListener("load", () => {
-    confettiSound.play();
-});
+// --- ACTIVAR AUDIO EN PRIMERA INTERACCIÓN (los navegadores bloquean autoplay) ---
+function iniciarAudio() {
+    music.volume = 0.6;
+    music.play().catch(()=>{});
+    confettiSound.volume = 0.8;
+    confettiSound.play().catch(()=>{});
+    document.removeEventListener("click", iniciarAudio);
+    document.removeEventListener("touchstart", iniciarAudio);
+}
+
+document.addEventListener("click", iniciarAudio);
+document.addEventListener("touchstart", iniciarAudio);
 
 // Cursor gato
 const cursor = document.getElementById("cursor");
